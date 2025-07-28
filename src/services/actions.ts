@@ -34,7 +34,13 @@ interface UseWriteRequestProps<T> {
   showToastOnError?: boolean;
   toastSuccessMessage?: string;
 }
-export function useWriteRequest<T>({
+interface UseReadRequestProps {
+  queryKey: string[];
+  url: string;
+  params?: object;
+}
+
+export function WriteRequest<T>({
   mutationKey,
   invalidate,
   onSuccess,
@@ -60,20 +66,64 @@ export function useWriteRequest<T>({
   });
 }
 
-interface UseReadRequestProps {
-  queryKey: string[];
-  url: string;
-  params?: object;
-}
-
-export function useReadRequest({
-  queryKey,
-  url,
-  params,
-}: UseReadRequestProps) {
+export function ReadRequest({ queryKey, url, params }: UseReadRequestProps) {
   return useQuery({
     queryKey,
     queryFn: () => sendRequest({ method: "get", url, params }),
-   
   });
 }
+
+export const useGetData = ({ queryKey, url, params }: UseReadRequestProps) => {
+  return ReadRequest({ queryKey, url, params });
+};
+export const useAddData = <T>({
+  mutationKey,
+  invalidate,
+  onSuccess,
+  onError,
+  showToastOnError,
+  toastSuccessMessage,
+}: UseWriteRequestProps<T> = {}) => {
+  return WriteRequest({
+    mutationKey,
+    invalidate,
+    onSuccess,
+    onError,
+    showToastOnError,
+    toastSuccessMessage,
+  });
+};
+export const useEditData = <T>({
+  mutationKey,
+  invalidate,
+  onSuccess,
+  onError,
+  showToastOnError,
+  toastSuccessMessage,
+}: UseWriteRequestProps<T> = {}) => {
+  return WriteRequest({
+    mutationKey,
+    invalidate,
+    onSuccess,
+    onError,
+    showToastOnError,
+    toastSuccessMessage,
+  });
+};
+export const useDeleteData = <T>({
+  mutationKey,
+  invalidate,
+  onSuccess,
+  onError,
+  showToastOnError,
+  toastSuccessMessage,
+}: UseWriteRequestProps<T> = {}) => {
+  return WriteRequest({
+    mutationKey,
+    invalidate,
+    onSuccess,
+    onError,
+    showToastOnError,
+    toastSuccessMessage,
+  });
+};
