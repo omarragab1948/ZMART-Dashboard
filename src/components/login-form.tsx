@@ -13,12 +13,12 @@ import FormProvider from "./FormProvider";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { useWriteRequest } from "@/services/actions";
+import { useAddData } from "@/services/actions";
 import { Link } from "react-router";
 import { endpoints } from "@/services/endpoints";
 import AuthHandlers from "@/features/auth/AuthHandlers";
 import type { IUser } from "@/types/user";
-import  Spinner from "./Spinner";
+import Spinner from "./Spinner";
 
 const loginSchema = z.object({
   email: z
@@ -41,8 +41,8 @@ export function LoginForm({
   const methods = useForm<FormFields>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
-      email: "",
-      password: "",
+      email: "superadmin@superadmin.com",
+      password: "Superadmin@1234",
     },
   });
 
@@ -52,7 +52,7 @@ export function LoginForm({
     formState: { errors },
   } = methods;
 
-  const { mutate, isPending } = useWriteRequest({
+  const { mutate, isPending } = useAddData({
     showToastOnError: true,
     onSuccess: (data: { token: string; data: { user: IUser } }) => {
       console.log(data);
@@ -78,7 +78,7 @@ export function LoginForm({
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <FormProvider mehtods={methods} onSubmit={onSubmit}>
+          <FormProvider methods={methods} onSubmit={onSubmit}>
             <div className="flex flex-col gap-6">
               <div className="grid gap-3">
                 <Label htmlFor="email">Email</Label>
