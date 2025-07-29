@@ -2,13 +2,13 @@ import { FormProvider as Form, type UseFormReturn } from "react-hook-form";
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 interface FormProviderProps {
-  mehtods: UseFormReturn<any>;
+  methods: UseFormReturn<any>;
   onSubmit: VoidFunction;
   children: React.ReactNode;
 }
-const FormProvider = ({ mehtods, onSubmit, children }: FormProviderProps) => {
+const FormProvider = ({ methods, onSubmit, children }: FormProviderProps) => {
   return (
-    <Form {...mehtods}>
+    <Form {...methods}>
       <form onSubmit={onSubmit}>{children}</form>
     </Form>
   );
