@@ -18,17 +18,10 @@ const ViewEmployee = () => {
   return (
     <div className="p-4 space-y-6">
       <PageHeader
-<<<<<<< Updated upstream
-        title={`Employee: ${employee?.name}`}
-        links={[
-          { path: "/employee", label: "Employee" },
-          { path: `/employee/${employee}`, label: "View Employee" },
-=======
         title={`employee: ${employee?.name}`}
         links={[
           { path: "/employee", label: "Employee" },
           { path: `/employee/${employeeId}`, label: "View Employee" },
->>>>>>> Stashed changes
         ]}
       />
       {isPending ? (
