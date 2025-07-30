@@ -3,7 +3,7 @@ import { Separator } from "@/components/ui/separator";
 import { CalendarDays, Info, Tag } from "lucide-react";
 import type { Permission } from "@/types/permission";
 import { convertDate } from "@/utils/convertDate";
-import { permissionsOtions } from "../permissions-options";
+import { permissionsOptions } from "../permissions-options";
 
 interface IPermission {
   permission: Permission;
@@ -51,7 +51,7 @@ const PermissionInfo = ({ permission }: IPermission) => {
             <div className="flex flex-wrap gap-2">
               {permissions.map((perm: string) => (
                 <Badge key={perm} variant="outline" className="min-w-32">
-                  {permissionsOtions?.find((option) => option.value === perm)
+                  {permissionsOptions?.find((option) => option.value === perm)
                     ?.label || perm}
                 </Badge>
               ))}
