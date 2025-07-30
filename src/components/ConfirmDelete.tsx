@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import type { FC } from "react";
+import CustomModal from "./CustomModal";
 
 interface ConfirmDeleteProps {
   open: boolean;
@@ -16,14 +17,10 @@ const ConfirmDelete: FC<ConfirmDeleteProps> = ({
   message = "Are you sure you want to delete this item? This action cannot be undone.",
   onConfirm,
 }) => {
-  if (!open) return null;
-
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
-      <div className="bg-white p-6 rounded-xl shadow-xl w-full max-w-sm">
-        <h2 className="text-lg font-bold text-gray-800 mb-2">{title}</h2>
+    <CustomModal onClose={onClose} open={open} title={title}>
+      <div className="p-2 w-full">
         <p className="text-gray-600 mb-4">{message}</p>
-
         <div className="flex justify-end gap-3">
           <Button
             variant="outline"
@@ -41,7 +38,7 @@ const ConfirmDelete: FC<ConfirmDeleteProps> = ({
           </Button>
         </div>
       </div>
-    </div>
+    </CustomModal>
   );
 };
 
