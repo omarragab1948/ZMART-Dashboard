@@ -15,9 +15,7 @@ const Customers = () => {
     queryKey,
     url: `${endpoints.customers.list}?${queryString}`,
   });
-  console.log(data);
-  console.log(queryKey);
-  console.log(queryString);
+
   return (
     <div className="overflow-x-auto pt-10">
       <PageHeader

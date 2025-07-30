@@ -55,7 +55,6 @@ export function LoginForm({
   const { mutate, isPending } = useAddData({
     showToastOnError: true,
     onSuccess: (data: { token: string; data: { user: IUser } }) => {
-      console.log(data);
       loginHandler(data?.data?.user, data?.token);
     },
   });

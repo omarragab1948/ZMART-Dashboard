@@ -33,7 +33,6 @@ const CreateEmployeeForm = ({
 }: React.ComponentProps<"div">) => {
   const navigate = useNavigate();
   const [permissions, setPermissions] = useState<string[]>([]);
-  console.log(permissions);
   const sellerSchema = z
     .object({
       name: z.string().nonempty("Name is required"),
@@ -106,7 +105,6 @@ const CreateEmployeeForm = ({
   });
 
   const onSubmit = handleSubmit((data) => {
-    console.log(data);
     // mutate({
     //   method: "post",
     //   url: endpoints.employees.create,
