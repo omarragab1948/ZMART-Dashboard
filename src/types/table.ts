@@ -15,7 +15,7 @@ export type TableCustomRender<T> = {
 export interface TableProps<T> {
   items: T[];
   tableHead: TableHeadItem[];
-  actions?: (item: T) => TableAction<T>[];
+  actions?: ((item: T) => TableAction<T>[]) | TableAction<T>[];
   customRender?: TableCustomRender<T>;
-  total:number
+  total: number;
 }

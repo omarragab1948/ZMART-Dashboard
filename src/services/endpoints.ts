@@ -19,7 +19,7 @@ export const endpoints = {
   },
   permissions: {
     list: "permissions",
-    getOne: (id: string) => `permissions/${id}`,
+    One: (id: string) => `permissions/${id}`,
     create: "permissions/create",
   },
 };
