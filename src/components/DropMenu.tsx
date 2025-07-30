@@ -9,12 +9,11 @@ import { Button } from "./ui/button";
 import type { TableAction } from "@/types/table";
 
 type DropMenuProps<T> = {
-  items?: (item: T) => TableAction<T>[];
+  items?: ((item: T) => TableAction<T>[]) | TableAction<T>[];
   item: T;
 };
 const DropMenu = <T,>({ items, item }: DropMenuProps<T>) => {
-  const actions = items?.(item);
-
+  const actions = typeof items === "function" ? items(item) : items;
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="text-lg cursor-pointer">
@@ -22,7 +21,7 @@ const DropMenu = <T,>({ items, item }: DropMenuProps<T>) => {
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         {actions?.map((action) => (
-          <DropdownMenuItem>
+          <DropdownMenuItem key={action.title} className="cursor-pointer">
             <Button
               variant="ghost"
               onClick={() => action.onClick(item)}
