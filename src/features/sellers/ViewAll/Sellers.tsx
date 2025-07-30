@@ -11,8 +11,7 @@ import useQueryParams from "@/hooks/useQueryParams";
 const Sellers = () => {
   const { useQueryParamsKey } = useQueryParams();
   const { queryKey, queryString } = useQueryParamsKey("seller");
-  console.log(queryKey);
-  console.log(queryString);
+
   const { data, isPending } = useGetData({
     queryKey,
     url: `${endpoints.sellers.list}?${queryString}`,

@@ -77,7 +77,6 @@ const CreateCustomerForm = ({
   });
 
   const onSubmit = handleSubmit((data) => {
-    console.log(data);
     mutate({
       method: "post",
       url: endpoints.customers.create,
