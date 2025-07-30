@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/breadcrumb";
 
 import { Link } from "react-router";
+import { Fragment } from "react/jsx-runtime";
 
 interface IProps {
   links: { path: string; label: string }[];
@@ -18,16 +19,16 @@ const CustomBreadcrumb = ({ links }: IProps) => {
       <BreadcrumbList>
         {links.map((link, i) => {
           return links.length !== i + 1 ? (
-            <>
+            <Fragment key={link.label}>
               <BreadcrumbItem key={link.label}>
                 <BreadcrumbLink asChild>
                   <Link to={link.path}>{link.label}</Link>
                 </BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
-            </>
+            </Fragment>
           ) : (
-            <BreadcrumbItem>
+            <BreadcrumbItem key={link.label}>
               <BreadcrumbPage>{link.label}</BreadcrumbPage>
             </BreadcrumbItem>
           );

@@ -18,6 +18,7 @@ const CustomTable = <T extends { id: string | number }>({
   customRender = {},
   total,
 }: TableProps<T>) => {
+
   const renderHead = (
     <>
       {tableHead.map((head) => (
