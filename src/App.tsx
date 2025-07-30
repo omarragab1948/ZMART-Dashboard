@@ -14,10 +14,11 @@ import Customers from "./features/customers/Customers";
 import Employees from "./features/employees/Employees";
 import CreateSeller from "./features/sellers/Create/CreateSellerForm";
 import ViewSeller from "./features/sellers/ViewOne/ViewSeller";
-import ViewEmployee from "./features/employees/ViewOne/ViewEmployee";
 import ViewCustomer from "./features/customers/ViewOne/ViewCustomer";
 import CreateCustomer from "./features/customers/Create/CreateCustomer";
 import CreateEmployee from "./features/employees/Create/CreateEmployee";
+import Permissions from "./features/permissions/Permissions";
+import ViewEmployee from "./features/employees/ViewOne/ViewEmployee";
 
 function App() {
   const router = createBrowserRouter(
@@ -45,7 +46,7 @@ function App() {
             <Route path="create" element={<CreateEmployee />} />
             <Route path=":id" element={<ViewEmployee />} />
           </Route>
-          <Route path="permissions" element={<ResetPassPage />} />
+          <Route path="permissions" element={<Permissions />} />
         </Route>
       </>
     )
