@@ -25,11 +25,6 @@ const CreateEmployeeForm = ({
   ...props
 }: React.ComponentProps<"div">) => {
   const navigate = useNavigate();
-<<<<<<< Updated upstream
-  const [permissions, setPermissions] = useState<string[]>([]);
-  console.log(permissions);
-=======
->>>>>>> Stashed changes
   const sellerSchema = z
     .object({
       name: z.string().nonempty("Name is required"),
@@ -105,20 +100,11 @@ const CreateEmployeeForm = ({
   });
 
   const onSubmit = handleSubmit((data) => {
-<<<<<<< Updated upstream
-    console.log(data);
-    // mutate({
-    //   method: "post",
-    //   url: endpoints.employees.create,
-    //   data,
-    // });
-=======
     mutate({
       method: "post",
       url: endpoints.employees.create,
       data,
     });
->>>>>>> Stashed changes
   });
 
   return (

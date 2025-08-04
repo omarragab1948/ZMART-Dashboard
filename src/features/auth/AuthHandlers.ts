@@ -1,23 +1,19 @@
-import type { RootState } from "@/rtk/store";
-import { login, logout } from "@/rtk/userSlice";
+import { useUserStore } from "@/stores/userStore";
 import type { IUser } from "@/types/user";
 import { deleteCookie, setCookie } from "@/utils/cookiesHandler";
-import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 
 const AuthHandlers = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const user = useSelector((state: RootState) => state.user.user);
-  console.log(user);
+  const { user, login, logout } = useUserStore((state) => state);
   const loginHandler = (userData: IUser, token: string) => {
-    dispatch(login(userData));
+    login(userData);
     setCookie("user", userData);
     setCookie("accessToken", token);
     navigate("/dashboard");
   };
   const handleLogout = () => {
-    dispatch(logout());
+    logout();
     deleteCookie("user");
     deleteCookie("accessToken");
     navigate("/login");
