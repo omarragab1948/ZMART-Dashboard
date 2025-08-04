@@ -68,7 +68,7 @@ const CreatePermissionForm = ({ permission, onClose }: IPermissionForm) => {
     if (permission) {
       mutate({
         method: "put",
-        url: endpoints.permissions.One(permission.id),
+        url: endpoints.permissions.getOne(permission.id),
         data,
       });
     } else {

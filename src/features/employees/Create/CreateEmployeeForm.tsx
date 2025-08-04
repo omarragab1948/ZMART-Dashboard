@@ -5,14 +5,13 @@ import { Label } from "@/components/ui/label";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { useAddData } from "@/services/actions";
+import { useAddData, useGetData } from "@/services/actions";
 import { endpoints } from "@/services/endpoints";
 import FormProvider from "@/components/FormProvider";
 import Spinner from "@/components/Spinner";
 import CustomImageInput from "@/components/CustomImageInput";
 import { useNavigate } from "react-router";
 
-import { useState } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -20,20 +19,17 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Checkbox } from "@/components/ui/checkbox";
-const options = [
-  { label: "All", value: "all" },
-  { label: "Banned", value: "banned" },
-  { label: "Pending", value: "pending" },
-  { label: "Active", value: "active" },
-  { label: "Deleted", value: "deleted" },
-];
+import type { Permission } from "@/types/permission";
 const CreateEmployeeForm = ({
   className,
   ...props
 }: React.ComponentProps<"div">) => {
   const navigate = useNavigate();
+<<<<<<< Updated upstream
   const [permissions, setPermissions] = useState<string[]>([]);
   console.log(permissions);
+=======
+>>>>>>> Stashed changes
   const sellerSchema = z
     .object({
       name: z.string().nonempty("Name is required"),
@@ -53,7 +49,7 @@ const CreateEmployeeForm = ({
       image: z.file().nullable(),
       role: z.string(),
       status: z.string().nonempty("Status is required"),
-      permissions: z.array(z.string()).optional(),
+      permission: z.string("Permission is required").optional(),
     })
     .refine((data) => data.password === data.passwordConfirm, {
       message: "Passwords do not match",
@@ -82,17 +78,20 @@ const CreateEmployeeForm = ({
     formState: { errors },
     setValue,
     reset,
+    watch,
   } = methods;
-  const onChange = (val: string) => {
-    setPermissions((prev) =>
-      prev.includes(val) ? prev.filter((p) => p !== val) : [...prev, val]
-    );
-    setValue(
-      "permissions",
-      permissions.includes(val)
-        ? permissions.filter((p) => p !== val)
-        : [...permissions, val]
-    );
+
+  const { data } = useGetData({
+    queryKey: ["permissions"],
+    url: endpoints.permissions.list,
+  });
+  const permissions: Permission[] = data?.data?.permissions || [];
+  const onChoosePermission = (id: string) => {
+    if (watch("permission") === id) {
+      setValue("permission", "");
+      return;
+    }
+    setValue("permission", id);
   };
   const { mutate, isPending } = useAddData({
     mutationKey: ["customer"],
@@ -106,12 +105,20 @@ const CreateEmployeeForm = ({
   });
 
   const onSubmit = handleSubmit((data) => {
+<<<<<<< Updated upstream
     console.log(data);
     // mutate({
     //   method: "post",
     //   url: endpoints.employees.create,
     //   data,
     // });
+=======
+    mutate({
+      method: "post",
+      url: endpoints.employees.create,
+      data,
+    });
+>>>>>>> Stashed changes
   });
 
   return (
@@ -220,7 +227,7 @@ const CreateEmployeeForm = ({
           <div className="grid gap-3">
             <Label htmlFor="passwordConfirm">Permissions</Label>
             <Controller
-              name="permissions"
+              name="permission"
               control={control}
               render={() => (
                 <DropdownMenu>
@@ -229,63 +236,31 @@ const CreateEmployeeForm = ({
                       variant="outline"
                       className="w-full justify-between"
                     >
-                      {permissions.length > 0
-                        ? `${permissions.join(", ")}`
-                        : "Select Permissions"}
+                      {permissions.find(
+                        (perm) => perm?.id === watch("permission")
+                      )?.name || "Select Permission"}
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent className="w-56 p-2">
-                    {options.map((option) => (
+                    {permissions.map((perm) => (
                       <DropdownMenuItem
-                        key={option.value}
-                        onClick={(e) => e.preventDefault()}
-                        className="flex items-center space-x-2 cursor-pointer"
+                        key={perm.id}
+                        asChild
+                        onSelect={(e) => e.preventDefault()}
                       >
-                        <DropdownMenuContent className="w-56 p-2">
-                          {options.map((option) => (
-                            <DropdownMenuItem
-                              key={option.value}
-                              asChild
-                              onSelect={(e) => e.preventDefault()} // منع الإغلاق الافتراضي
-                            >
-                              <div
-                                className="flex items-center space-x-2 cursor-pointer"
-                                onClick={() => {
-                                  const checked = !permissions.includes(
-                                    option.value
-                                  );
-                                  if (option.value === "all") {
-                                    if (checked) {
-                                      const allValues = options.map(
-                                        (o) => o.value
-                                      );
-                                      setPermissions(allValues);
-                                      setValue("permissions", allValues);
-                                    } else {
-                                      setPermissions([]);
-                                      setValue("permissions", []);
-                                    }
-                                  } else {
-                                    const updatedPermissions = checked
-                                      ? [...permissions, option.value]
-                                      : permissions.filter(
-                                          (p) => p !== option.value
-                                        );
-                                    setPermissions(updatedPermissions);
-                                    setValue("permissions", updatedPermissions);
-                                  }
-                                }}
-                              >
-                                <Checkbox
-                                  checked={permissions.includes(option.value)}
-                                  id={option.value}
-                                  className="pointer-events-none cursor-pointer"
-                                />
-                                <span>{option.label}</span>
-                              </div>
-                            </DropdownMenuItem>
-                          ))}
-                        </DropdownMenuContent>
+                        <div
+                          className="flex items-center space-x-2 cursor-pointer"
+                          onClick={() => {
+                            onChoosePermission(perm?.id);
+                          }}
+                        >
+                          <Checkbox
+                            checked={watch("permission") === perm.id}
+                            id={perm.id}
+                            className="pointer-events-none cursor-pointer"
+                          />
+                          <span>{perm.name}</span>
+                        </div>
                       </DropdownMenuItem>
                     ))}
                   </DropdownMenuContent>

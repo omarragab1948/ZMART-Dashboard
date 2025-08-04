@@ -18,9 +18,9 @@ const ViewEmployee = () => {
   return (
     <div className="p-4 space-y-6">
       <PageHeader
-        title={`employee: ${employee?.name}`}
+        title={`Employee: ${employee?.name}`}
         links={[
-          { path: "/employee", label: "Employee" },
+          { path: "/employees", label: "Employees" },
           { path: `/employee/${employeeId}`, label: "View Employee" },
         ]}
       />

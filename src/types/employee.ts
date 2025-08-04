@@ -7,5 +7,9 @@ export type Employee = {
   createdAt: string;
   updatedAt: string;
   image?: string;
-  permissions: string[];
+  permission: {
+    id: string;
+    name: string;
+    description: string;
+  };
 };

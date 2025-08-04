@@ -8,7 +8,7 @@ interface IEmployee {
   employee: Employee;
 }
 const EmployeeInfo = ({ employee }: IEmployee) => {
-  const { name, email, status, phone, createdAt, image } = employee;
+  const { name, email, status, phone, createdAt, image, permission } = employee;
   return (
     <Card className="p-6 shadow-md">
       <CardHeader className="flex flex-row items-center gap-4">
@@ -21,15 +21,22 @@ const EmployeeInfo = ({ employee }: IEmployee) => {
           {renderStatus(status)}
         </div>
       </CardHeader>
-      <CardContent className="space-y-3 mt-4">
+      <CardContent className="grid gap-2 mt-4">
         <p>
           <strong>Email:</strong> {email}
         </p>
         <p>
           <strong>Phone:</strong> {phone}
         </p>
-        <p className="text-gray-500 text-sm">
+        <p>
           <strong>Joined:</strong> {convertDate(createdAt)}
+        </p>
+        <p>
+          <strong>Permission Name:</strong> {permission?.name || "N/A"}
+        </p>
+        <p>
+          <strong>Permission Description:</strong>{" "}
+          {permission?.description || "N/A"}
         </p>
       </CardContent>
     </Card>
