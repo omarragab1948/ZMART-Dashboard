@@ -1,69 +1,53 @@
-# React + TypeScript + Vite
+# Admin & Seller Dashboard  
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-featured **Admin Dashboard** built with **React, TypeScript, and modern libraries** to manage an e-commerce platform. The system provides tools for admins, sellers, and employees with role-based permissions.  
 
-Currently, two official plugins are available:
+## 🚀 Tech Stack  
+- **React + TypeScript** – UI and application logic  
+- **Tailwind CSS** – Styling  
+- **shadcn/ui** – UI components  
+- **Zustand** – State management  
+- **TanStack Query** – Server state management  
+- **React Hook Form + Zod** – Form handling and validation  
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ⚙️ Features  
 
-## Expanding the ESLint configuration
+### 👨‍💼 Admin Features  
+- Manage **employees** with role-based **permissions**  
+- Manage **customers, categories, and subcategories**  
+- View **reports and analytics**  
+- Manage and approve **orders**  
+- Review and approve **products** submitted by sellers  
+- Access **financial reports** of overall sales  
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 🛍️ Seller Features  
+- Add and manage their own **products**  
+- View **financial details** of their sales  
+- Track and manage their **customers**  
+- Submit products for **admin approval**  
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### 📊 Dashboard  
+- Centralized overview with key metrics  
+- Sales and revenue tracking  
+- User and product insights  
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## 📂 Project Structure
+/src
+  /components   # UI components (shadcn/ui, reusable parts)
+  /features     # Business logic modules (users, products, orders...)
+  /hooks        # Custom React hooks
+  /store        # Zustand global state
+  /utils        # Helper functions
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 🔑 Highlights
+- Clean and modular **TypeScript-first codebase**
+- Scalable design system with **shadcn/ui + Tailwind**
+- Optimized **server state** with TanStack Query
+- Strong **form validation** with Zod & React Hook Form
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## ⚡️ Getting Started
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### 1. Clone the repo
+```bash
+git clone https://github.com/your-username/admin-dashboard.git
+cd admin-dashboard
