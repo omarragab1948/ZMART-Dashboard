@@ -45,6 +45,21 @@ A full-featured **Admin Dashboard** built with **React, TypeScript, and modern l
 - Optimized **server state** with TanStack Query
 - Strong **form validation** with Zod & React Hook Form
 
+## 📸 Screenshots
+
+### 1️⃣ Add Category
+![Add Category](screenshots/add-category.png)
+
+### 2️⃣ Create Subcategory
+![Create Subcategory](screenshots/create-subcategory.png)
+
+### 3️⃣ Subcategories Overview
+![Subcategories Overview](screenshots/subcategories.png)
+
+### 4️⃣ Sellers Dashboard
+![Sellers Dashboard](screenshots/sellers.png)
+
+
 ## ⚡️ Getting Started
 
 ### 1. Clone the repo
