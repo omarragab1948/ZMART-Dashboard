@@ -65,4 +65,3 @@ A full-featured **Admin Dashboard** built with **React, TypeScript, and modern l
 ### 1. Clone the repo
 ```bash
 git clone https://github.com/your-username/admin-dashboard.git
-cd admin-dashboard
